@@ -110,7 +110,7 @@ function update(data,lockAfter) {
               <td>${show}${getTinyTag(item.nStatus,item.members)}</td>
               <td>${item.members}</td>
               <td>${item.name.replace(/[^a-zA-Z0-9.-_&\s+]/g,"")}</td>
-              <td><a href="${item.invite}" target="_blank">${(item.lName || "🔗Invite").replace(/ð/g,'🔗')}</a></td>
+              <td><a href="${item.invite}" target="_blank">${(item.lName || "🔗 Invite").replace(/ð/g,'🔗')}</a></td>
             </tr>
           `;
         });
