@@ -758,10 +758,10 @@
   .locked {
     position: relative;
   }
-  .locked .overlay {
+  .locked .dark-overlay {
     position: absolute;
     inset: 0;
-    background: rgba(255,255,255,0.9);
+    background: rgba(158, 158, 158, 0.9);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -770,14 +770,35 @@
     z-index: 10;
     border-radius: 25px;
   }
-  .locked .overlay img {
-    width: 32px;
+  .locked .dark-overlay img {
+    width: 50px;
     opacity: 0.6;
   }
-  .locked .overlay span {
+  .locked .dark-overlay span {
     margin-top: 6px;
-    font-size: 0.9rem;
+    font-size: 1.1rem;
     color: #333;
+  }
+  .locked .light-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(51, 51, 51, 0.8);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: not-allowed;
+    z-index: 10;
+    border-radius: 25px;
+  }
+  .locked .light-overlay img {
+    width: 50px;
+    opacity: 0.6;
+  }
+  .locked .light-overlay span {
+    margin-top: 6px;
+    font-size: 1.1rem;
+    color: #ffffff;
   }
 
   .centered {

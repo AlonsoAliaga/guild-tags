@@ -6,12 +6,22 @@ function toggleDarkmode() {
         o.classList.add("darkbuttonboxes");
         //console.log(`Darking: ${o.id}`)
       }
+      let d = document.getElementById("overlay-div");
+      if(d) {
+        d.classList.remove("light-overlay");
+        d.classList.add("dark-overlay");
+      }
     }else{
       document.body.classList.remove('dark');
       for(let o of document.querySelectorAll('.darkbuttonboxes')) {
         o.classList.remove("darkbuttonboxes");
         o.classList.add("lightbuttonboxes");
         //console.log(`Lighting: ${o.id}`)
+      }
+      let d = document.getElementById("overlay-div");
+      if(d) {
+        d.classList.remove("dark-overlay");
+        d.classList.add("light-overlay");
       }
     }
 }
@@ -138,7 +148,8 @@ function lock() {
     container.innerHTML = "";
     container.classList.add("locked");
     const ov = document.createElement('div');
-    ov.className = 'overlay';
+    ov.id = "overlay-div";
+    ov.className = document.getElementById('darkmode').checked ? 'dark-overlay' : 'light-overlay';
     ov.innerHTML = `<img src="https://raw.githubusercontent.com/AlonsoAliaga/guild-tags/main/assets/images/lock-icon.png"><span>Click to unlock</span>`;
     container.append(ov);
     if(typeof stored == "undefined") {
