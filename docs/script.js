@@ -131,18 +131,25 @@ function update(data,lockAfter) {
     }
 }
 function getTinyTag(nStatus,count) {
-    if(typeof nStatus != "undefined" && nStatus.length >= 1) {
-        let color = `#3498db`;
-        let sLower = nStatus.toLowerCase();
-        let amount = parseInt(count.replace(/./g,""));
-        if(amount >= 280000) {
-          nStatus = "FULL"
-          color = "#ff1216";
-        }else if(sLower == "new") color = "#3498db"
-        else if(sLower == "active again") color = "#1fb531"
-        return ` <span style="display:inline-block; padding:4px 8px; background-color:${color}; color:#fff; font-size:18px; font-weight:bold; border-radius:4px; text-transform:uppercase;">${nStatus}</span>`
-    }
-    return ``;
+  let stripped = count.replace(/,/g,"");
+  let amount = parseInt(stripped);
+  let tags = [];
+  let forced = false;
+  if(amount >= 280000) {
+    color = "#fa0c10";
+    tags.push(` <span style="display:inline-block; padding:4px 8px; background-color:${color}; color:#fff; font-size:18px; font-weight:bold; border-radius:4px; text-transform:uppercase;">FULL</span>`);
+  }
+  if(typeof nStatus != "undefined" && nStatus.length >= 1) {
+      let color = `#3498db`;
+      let sLower = nStatus.toLowerCase();
+      if(sLower == "new") color = "#3498db"
+      else if(sLower == "active again") color = "#1fb531"
+      tags.push(` <span style="display:inline-block; padding:4px 8px; background-color:${color}; color:#fff; font-size:18px; font-weight:bold; border-radius:4px; text-transform:uppercase;">${nStatus}</span>`);
+  }
+  if(tags.length >= 1) {
+    return tags.join("");
+  }
+  return ``;
 }
 function lock() {
     //console.log(`Calling lock method..`);
