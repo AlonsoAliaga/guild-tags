@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <link rel="shortcut icon" href="https://cdn.discordapp.com/emojis/791742603183259648.webp?size=96&quality=lossless" type="image/x-icon">
+    <link rel="stylesheet" href="./style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  
+    <title>Guild Tags for Discord</title>
+    
+    <meta name="theme-color" content="#9a14ff"/>
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Guild Tags" />
+    <meta property="og:title" content="Guild Tags for Discord | AlonsoAliaga Development">
+    <meta property="og:image" content="https://raw.githubusercontent.com/AlonsoAliaga/guild-tags/main/assets/images/discord-logo.png">
+    <meta property="og:description" content="Looking for a Guild Tag that fit your personality? This site contains all Guild Tags available with a invitation to the server!">
+    <meta property="og:url" content="https://alonsoaliaga.com/guild-tags">
+  </head>
+  <body onload="loadCounter(); checkSite(window); ">
+    <div class="content">
+      <div class="header">
+        <h1 style="font-family: MinecraftBold;"><a href="https://alonsoaliaga.com/guild-tags" rel="noopener" target="_blank">Guild Tags</a> for Discord</h1>
+        <h2 style="font-size: 20px; color: rgb(255, 71, 71)">Use Google Chrome or Opera for a better experience. Edge is reported as not compatible!</h2>
+        <div class="options" style="padding: 10px 10px 10px 10px; margin-bottom: 10px;">
+          <h2 class="rainbow" style="font-size:25px; color:transparent">What is this site for?</h2>
+          This site shows you all Guild Tags available for <b class="rainbow">Discord</b> for you to pick.<br><br>
+          <h2 style="font-size: 20px; color: rgb(255, 71, 71)">Don't be the only of your friends that doesn't have ONE!</h2>
+          <span style="font-size: 17px;">
+            <b>⚠️ If you know new ones, suggest them in our <a href="https://alonsoaliaga.com/discord" rel="noopener" target="_blank">official discord server.</a></b><br>
+          </span>
+        </div>
+        <span id="snackbar"><b>💎 Successfully Copied! 💎</b><br><span style="font-size: small;">Thanks for using our tool!</span></span>
+        <span style="font-family: MinecraftBold;">Site options:</span>
+        <div id="appearance" style="display: inline-block;font-family: MinecraftBold;padding: 5px 10px 5px 10px;" class="darkbuttonboxes">
+          <input type="checkbox" checked id="darkmode" onclick="toggleDarkmode();"></input>
+          <label for="darkmode" style="margin-bottom: 0px;margin-top: 0px;"> Dark Mode 👁‍🗨</label>
+        </div>
+      </div>
+      <div>
+        <h3 style="font-size: 50px; font-family: MinecraftBold;margin-top: 10px;margin-bottom: 5px;">Available Guild Tags</h3>
+        <div class="options centered" id="guild-tags">
+            <img src="https://raw.githubusercontent.com/AlonsoAliaga/guild-tags/main/assets/images/loading.gif" alt="Loading">
+            <br><br><br><br>
+            <h2 style="font-size: 25px; font-family: MinecraftBold;">Please wait. Loading guild tags..</h2>
+            <div class="centered" id="guild-tags">
+            </div>
+        </div>
+        <div style="font-size: 18px ;padding-top: 0px;padding-bottom: 0px; font-family: MinecraftRegular;" class="examples">
+        </div>
+      </div>
+      <br>
+      <div class="options">
+        <div style="font-size: 18px ;padding-top: 0px;padding-bottom: 0px; font-family: MinecraftRegular;" class="examples">
+          <h2 style="font-size: 18px; font-family: MinecraftBold;">More tools for you:</h2>
+          <div style="text-align: left;font-size: 20px;" id="tools-for-you">
+          </div>
+          <br>
+          <h2 style="color: transparent;font-size: 18px ;text-align: center; font-family: MinecraftBold;"><a href="https://alonsoaliaga.github.io" rel="noopener" target="_blank">AlonsoAliaga Development</a></h2>
+        </div>
+      </div>
+      <br>
+      <h2 style="font-size: 15px ;text-align: center;">Referred links have been keep the same to support <a href="https://alonsoaliaga.com/onlyfans" rel="noopener" target="_blank">original authors.</a>.</h2>
+      <br>
+      <!-- <div id="mybutton">
+        <button class="buttonface"><a href="https://alonsoaliaga.github.io"><img src="https://raw.githubusercontent.com/AlonsoAliaga/alonsoaliaga.github.io/main/assets/img/apple-touch-icon.png"></a></button>
+      </div> -->
+      <div id="mybutton">
+        <div style="position: center;display: inline-block;">
+          <button class="buttonface"><a href="https://alonsoaliaga.github.io"><img src="https://raw.githubusercontent.com/AlonsoAliaga/alonsoaliaga.github.io/main/assets/img/apple-touch-icon.png"></a></button>
+          <br>
+          <div id="visitor-counter" style="text-align: center;">
+            <span id="counter-amount" style="font-family: MinecraftBold;font-weight: bold;">Visits: 0</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script ></script>
+  </div>
+
+  <!-- <script src="jquery-1.6.1.min.js"></script> -->
+  <script src="script.js"></script>
+  <!-- <script src="script.js"></script> -->
+  
+  <script>
+    
+  </script>
+  </body>
+</html>
