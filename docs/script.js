@@ -107,7 +107,7 @@ function update(data,lockAfter) {
           let show = `<span style="display:inline-block; padding:4px 8px; background-color:#545454; color:#fff; font-size:16px; font-weight:bold; border-radius:4px; text-transform:uppercase;font-family: Arial;"><img src="${item.img}" alt="${item.alt}" width="20"> ${item.alt}</span>`
           html += `
             <tr>
-              <td>${show}${getTinyTag(item.nStatus)}</td>
+              <td>${show}${getTinyTag(item.nStatus,item.members)}</td>
               <td>${item.members}</td>
               <td>${item.name.replace(/[^a-zA-Z0-9.-_&\s+]/g,"")}</td>
               <td><a href="${item.invite}" target="_blank">${(item.lName || "🔗Invite").replace(/ð/g,'🔗')}</a></td>
@@ -130,11 +130,15 @@ function update(data,lockAfter) {
         container.innerText = `Not found. How?`;
     }
 }
-function getTinyTag(nStatus) {
+function getTinyTag(nStatus,count) {
     if(typeof nStatus != "undefined" && nStatus.length >= 1) {
         let color = `#3498db`;
         let sLower = nStatus.toLowerCase();
-        if(sLower == "new") color = "#3498db"
+        let amount = parseInt(count.replace(/./g,""));
+        if(amount >= 280000) {
+          nStatus = "FULL"
+          color = "#ff1216";
+        }else if(sLower == "new") color = "#3498db"
         else if(sLower == "active again") color = "#1fb531"
         return ` <span style="display:inline-block; padding:4px 8px; background-color:${color}; color:#fff; font-size:18px; font-weight:bold; border-radius:4px; text-transform:uppercase;">${nStatus}</span>`
     }
