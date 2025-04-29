@@ -107,7 +107,8 @@ function update(data,lockAfter) {
           if(item.lName && item.lName.includes("Invite") && !item.lName.includes(" Invite")) {
             item.lName = "🔗 Invite";
           }
-          let show = `<span style="display:inline-block; padding:4px 8px; background-color:#545454; color:#fff; font-size:16px; font-weight:bold; border-radius:4px; text-transform:uppercase;font-family: Arial;"><img src="${item.img}" alt="${item.alt}" width="20"> ${item.alt}</span>`
+          tagName = item.alt == "IOS" ? "iOS" : item.alt;
+          let show = `<span style="display:inline-block; padding:4px 8px; background-color:#545454; color:#fff; font-size:16px; font-weight:bold; border-radius:4px; text-transform:uppercase;font-family: Arial;"><img src="${item.img}" alt="${item.alt}" width="20"> ${tagName}</span>`
           html += `
             <tr>
               <td>${show}${getTinyTag(item.nStatus,item.members)}</td>
