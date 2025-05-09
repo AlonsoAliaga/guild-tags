@@ -41,7 +41,7 @@ function checkSite(window) {
           try{
             k = btoa(k);
             if(k == "bW9kZQ==") {
-              if(v == "dW5sb2NrZWQ=") {
+              if(btoa(v) == "dW5sb2NrZWQ=") {
                 https = true;
               }
             }
@@ -181,6 +181,7 @@ function update(data,lockAfter) {
         stored = html;
         if(!container.classList.contains("locked")) {
             container.innerHTML = html;
+            container.style.removeProperty('height');
             container.style.minHeight = "fit-content"
             setTimeout(()=>{
               let oldNewHeight = newHeight;
@@ -244,6 +245,7 @@ function lock() {
         container.classList.remove("locked");
         if(typeof stored != "undefined") {
             container.innerHTML = stored;
+            container.style.removeProperty('height');
             container.style.minHeight = "fit-content"
             setTimeout(()=>{
               let oldNewHeight = newHeight;
