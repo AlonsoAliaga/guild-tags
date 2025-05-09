@@ -90,6 +90,7 @@ function check(lockAfter) {
     let a = atob("aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0Fsb25zb0FsaWFnYS9BbG9uc29BbGlhZ2FBUEkvcmVmcy9oZWFkcy9tYWluL2FwaS90YWdzL2d1aWxkLXRhZ3MuanNvbg==");
     var myHeaders = new Headers();
     myHeaders.append('Content-Type','text/plain; charset=UTF-8');
+    /*
     fetch(a,myHeaders)
       .then(res => res.json())
       .then(content => {
@@ -104,11 +105,12 @@ function check(lockAfter) {
         console.log(`Error content:`);
         console.log(e);
     });
+    */
     axios.get(`${a}`)
       .then(function (response) {
-        console.log('Response data:', response);
-        console.log("START")
-        console.log(response.data);
+        //console.log('Response data:', response);
+        //console.log("START")
+        //console.log(response.data);
         const decoded = response.data;
         /*
         if(true){
@@ -164,20 +166,21 @@ function update(data,lockAfter) {
           `;
         });
         html += '</tbody></table>';
+        stored = html;
         if(!container.classList.contains("locked")) {
             container.innerHTML = html;
-            container.style.minHeight = "fit-content"
+            if(typeof newHeight == "undefined") {
+              container.style.minHeight = "fit-content"
+            }
             setTimeout(()=>{
               newHeight = container.offsetHeight;
-              console.log(`New height is: ${newHeight}`)
+              //console.log(`New height is: ${newHeight}`)
             },100);
             if(lockAfter) {
                 setTimeout(()=>{
                     lock();
                 },1000 * 15);
             }
-        }else {
-            stored = html;
         }
     }else{
         container.innerText = `Not found. How?`;
@@ -205,7 +208,7 @@ function getTinyTag(nStatus,count) {
   return ``;
 }
 function lock() {
-  console.log(`newHeight: ${newHeight}`)
+   console.log(`newHeight: ${newHeight}`)
     //console.log(`Calling lock method..`);
     const container = document.getElementById('guild-tags');
     if(container.classList.contains("locked")) return;
@@ -230,9 +233,9 @@ function lock() {
             container.innerHTML = stored;
             container.style.minHeight = "fit-content"
             setTimeout(()=>{
-              console.log(container)
+              //console.log(container)
               newHeight = container.offsetHeight;
-              console.log(`New height is: ${newHeight}`)
+              //console.log(`New height is: ${newHeight}`)
             },100);
             setTimeout(()=>{
                 lock();
