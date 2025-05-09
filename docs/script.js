@@ -231,7 +231,9 @@ function lock() {
         container.classList.remove("locked");
         if(typeof stored != "undefined") {
             container.innerHTML = stored;
-            container.style.minHeight = "fit-content"
+            if(typeof newHeight == "undefined")
+              container.style.minHeight = "fit-content"
+            else container.style.height = newHeight;
             setTimeout(()=>{
               //console.log(container)
               newHeight = container.offsetHeight;
