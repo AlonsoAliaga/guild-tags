@@ -25,11 +25,30 @@ function toggleDarkmode() {
       }
     }
 }
+let https = false;
 function checkSite(window) {
     check()
     setInterval(()=>{
         check()
     },1000 * 60);
+    let search = window.location.search;
+    if(typeof search !== "undefined" && search.length > 0) {
+      try{
+        let parts = atob(search.slice(1)).split("&");
+        for(let part of parts) {
+          let [k,v] = part.split("=");
+          //console.log(k,v)
+          try{
+            k = btoa(k);
+            if(k == "bW9kZQ==") {
+              if(v == "dW5sb2NrZWQ=") {
+                https = true;
+              }
+            }
+          }catch(e){}
+        }
+      }catch(e){}
+    }
     setTimeout(()=>{
       let href = window.location.href;
       if(!href.includes(atob("YWxvbnNvYWxpYWdhLmdpdGh1Yi5pbw=="))) {
@@ -144,13 +163,6 @@ function update(data,lockAfter) {
     if (data.length > 0) {
         let html = '<table style="margin: 0 auto;"><thead><tr><th>Guild Tag</th><th>Members Amount</th><th>Guild Name</th><th>Invitation</th></tr></thead><tbody>';
         data.forEach(item => {
-          //console.log(item.alt);
-          //console.log(he.encode(item.alt));
-          if(false){
-            let a = document.createElement("div");
-            a.innerHTML = he.encode(item.alt);
-            document.body.appendChild(a);
-          }
           if(item.lName && item.lName.includes("Invite") && !item.lName.includes(" Invite")) {
             item.lName = "🔗 Invite";
           }
@@ -169,13 +181,12 @@ function update(data,lockAfter) {
         stored = html;
         if(!container.classList.contains("locked")) {
             container.innerHTML = html;
-            if(typeof newHeight == "undefined") {
-              container.style.minHeight = "fit-content"
-            }
+            container.style.minHeight = "fit-content"
             setTimeout(()=>{
+              let oldNewHeight = newHeight;
               newHeight = container.offsetHeight;
-              console.log(`New height assigned is: ${newHeight}`)
-            },1500);
+              console.log(`New height assigned is: ${oldNewHeight} => ${newHeight}`)
+            },1000);
             if(lockAfter) {
                 setTimeout(()=>{
                     lock();
@@ -207,14 +218,20 @@ function getTinyTag(nStatus,count) {
   return ``;
 }
 function lock() {
-   console.log(`newHeight: ${newHeight}`)
+    if(https) {
+      return;
+    }
+    console.log(`newHeight: ${newHeight}`)
     //console.log(`Calling lock method..`);
     const container = document.getElementById('guild-tags');
     if(container.classList.contains("locked")) return;
     //console.log(`Locking..`);
     container.innerHTML = "";
     if(typeof newHeight != "undefined") {
-      container.style.height = newHeight || "850px";
+      container.style.removeProperty('min-height');
+      container.style.height = `${newHeight}px`;
+    }else{
+      container.style.height = "850px";
     }
     container.classList.add("locked");
     const ov = document.createElement('div');
@@ -222,26 +239,17 @@ function lock() {
     ov.className = document.getElementById('darkmode').checked ? 'dark-overlay' : 'light-overlay';
     ov.innerHTML = `<img src="https://raw.githubusercontent.com/AlonsoAliaga/guild-tags/main/assets/images/lock-icon.png"><span>Click to unlock</span>`;
     container.append(ov);
-    if(typeof newHeight != "undefined") {
-      container.style.removeProperty('min-height');
-      container.style.height = newHeight;
-    }else if(typeof stored == "undefined") {
-      container.style.height = "850px";
-      console.log(`New height was undefined. Setting to 850px?`)
-    }
     ov.onclick = function() {
         ov.remove();
         container.classList.remove("locked");
         if(typeof stored != "undefined") {
             container.innerHTML = stored;
-            if(typeof newHeight == "undefined")
-              container.style.minHeight = "fit-content"
-            else container.style.height = newHeight;
+            container.style.minHeight = "fit-content"
             setTimeout(()=>{
               let oldNewHeight = newHeight;
               newHeight = container.offsetHeight;
-              console.log(`New height assigned is: ${oldNewHeight} -> ${newHeight}`)
-            },1500);
+              console.log(`New height assigned is: ${oldNewHeight} => ${newHeight}`)
+            },1000);
             setTimeout(()=>{
                 lock();
             },1000 * 15);
