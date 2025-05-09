@@ -238,8 +238,9 @@ function lock() {
               container.style.minHeight = "fit-content"
             else container.style.height = newHeight;
             setTimeout(()=>{
+              let oldNewHeight = newHeight;
               newHeight = container.offsetHeight;
-              console.log(`New height assigned is: ${newHeight}`)
+              console.log(`New height assigned is: ${oldNewHeight} -> ${newHeight}`)
             },100);
             setTimeout(()=>{
                 lock();
