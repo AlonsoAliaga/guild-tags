@@ -174,7 +174,7 @@ function update(data,lockAfter) {
             }
             setTimeout(()=>{
               newHeight = container.offsetHeight;
-              //console.log(`New height is: ${newHeight}`)
+              console.log(`New height assigned is: ${newHeight}`)
             },100);
             if(lockAfter) {
                 setTimeout(()=>{
@@ -190,7 +190,6 @@ function getTinyTag(nStatus,count) {
   let stripped = count.replace(/,/g,"");
   let amount = parseInt(stripped);
   let tags = [];
-  let forced = false;
   if(amount >= 280000) {
     color = "#fa0c10";
     tags.push(` <span style="display:inline-block; padding:4px 8px; background-color:${color}; color:#fff; font-size:18px; font-weight:bold; border-radius:4px; text-transform:uppercase;">FULL</span>`);
@@ -214,6 +213,9 @@ function lock() {
     if(container.classList.contains("locked")) return;
     //console.log(`Locking..`);
     container.innerHTML = "";
+    if(typeof newHeight != "undefined") {
+      container.style.height = newHeight || "850px";
+    }
     container.classList.add("locked");
     const ov = document.createElement('div');
     ov.id = "overlay-div";
@@ -224,7 +226,8 @@ function lock() {
       container.style.removeProperty('min-height');
       container.style.height = newHeight;
     }else if(typeof stored == "undefined") {
-      container.style.height = newHeight || "850px";
+      container.style.height = "850px";
+      console.log(`New height was undefined. Setting to 850px?`)
     }
     ov.onclick = function() {
         ov.remove();
@@ -235,9 +238,8 @@ function lock() {
               container.style.minHeight = "fit-content"
             else container.style.height = newHeight;
             setTimeout(()=>{
-              //console.log(container)
               newHeight = container.offsetHeight;
-              //console.log(`New height is: ${newHeight}`)
+              console.log(`New height assigned is: ${newHeight}`)
             },100);
             setTimeout(()=>{
                 lock();
