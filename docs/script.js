@@ -175,7 +175,7 @@ function update(data,lockAfter) {
             setTimeout(()=>{
               newHeight = container.offsetHeight;
               console.log(`New height assigned is: ${newHeight}`)
-            },100);
+            },1500);
             if(lockAfter) {
                 setTimeout(()=>{
                     lock();
@@ -241,7 +241,7 @@ function lock() {
               let oldNewHeight = newHeight;
               newHeight = container.offsetHeight;
               console.log(`New height assigned is: ${oldNewHeight} -> ${newHeight}`)
-            },100);
+            },1500);
             setTimeout(()=>{
                 lock();
             },1000 * 15);
