@@ -167,7 +167,7 @@ function update(data,lockAfter) {
             item.lName = "🔗 Invite";
           }
           tagName = item.tag == "IOS" ? "iOS" : item.tag;//text-transform:uppercase;
-          console.log(`sStatus for ${tagName} tag: ${item.nStatus}`)
+          //console.log(`sStatus for ${tagName} tag: ${item.nStatus}`)
           let show = `<span style="display:inline-block; padding:4px 8px; background-color:#545454; color:#fff; font-size:16px; font-weight:bold; border-radius:4px; font-family: Arial;"><img src="${item.img}" alt="${item.alt}" width="20"> ${tagName}</span>`
           html += `
             <tr>
@@ -187,7 +187,7 @@ function update(data,lockAfter) {
             setTimeout(()=>{
               let oldNewHeight = newHeight;
               newHeight = container.offsetHeight;
-              console.log(`New height assigned is: ${oldNewHeight} => ${newHeight}`)
+              //console.log(`New height assigned is: ${oldNewHeight} => ${newHeight}`)
             },1000);
             if(lockAfter) {
                 setTimeout(()=>{
@@ -251,7 +251,7 @@ function lock() {
             setTimeout(()=>{
               let oldNewHeight = newHeight;
               newHeight = container.offsetHeight;
-              console.log(`New height assigned is: ${oldNewHeight} => ${newHeight}`)
+              //console.log(`New height assigned is: ${oldNewHeight} => ${newHeight}`)
             },1000);
             setTimeout(()=>{
                 lock();
